@@ -1,5 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Review, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+  let(:name) { 'simple name' }
+
+  it { should belong_to(:hotel) } 
+  it { should validate_presence_of(:title) }
+
 end
