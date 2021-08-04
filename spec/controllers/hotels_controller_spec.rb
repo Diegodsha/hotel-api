@@ -24,17 +24,15 @@ require 'rails_helper'
 # `rails-controller-testing` gem.
 
 RSpec.describe HotelsController, type: :controller do
-
+  let(:name) { 'simple name' }
   # This should return the minimal set of attributes required to create a valid
   # Hotel. As you add validations to Hotel, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
+  let(:valid_attributes) {{ name: 'Learn Elmo', description: 'nice hotel', price_nigth: 34, services: 'pool,room service, buffet', img_url:'https://kjiovwbe.jpg' } } 
+  
 
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
-  }
+  let(:invalid_attributes) { { name: '', description: '', price_nigth: nil, services: '', img_url:'' } } 
+  
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
@@ -69,7 +67,7 @@ RSpec.describe HotelsController, type: :controller do
 
         post :create, params: {hotel: valid_attributes}, session: valid_session
         expect(response).to have_http_status(:created)
-        expect(response.content_type).to eq('application/json')
+        expect(response.content_type).to eq('application/json; charset=utf-8')
         expect(response.location).to eq(hotel_url(Hotel.last))
       end
     end
@@ -79,16 +77,14 @@ RSpec.describe HotelsController, type: :controller do
 
         post :create, params: {hotel: invalid_attributes}, session: valid_session
         expect(response).to have_http_status(:unprocessable_entity)
-        expect(response.content_type).to eq('application/json')
+        expect(response.content_type).to eq('application/json; charset=utf-8')
       end
     end
   end
 
   describe "PUT #update" do
     context "with valid params" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
+      let(:new_attributes) {{ name: 'Learn Elmosa', description: 'nice hotel', price_nigth: 34, services: 'pool,room service, buffet', img_url:'https://kjiovwbe.jpg' } }
 
       it "updates the requested hotel" do
         hotel = Hotel.create! valid_attributes
@@ -102,7 +98,7 @@ RSpec.describe HotelsController, type: :controller do
 
         put :update, params: {id: hotel.to_param, hotel: valid_attributes}, session: valid_session
         expect(response).to have_http_status(:ok)
-        expect(response.content_type).to eq('application/json')
+        expect(response.content_type).to eq('application/json; charset=utf-8')
       end
     end
 
@@ -112,7 +108,7 @@ RSpec.describe HotelsController, type: :controller do
 
         put :update, params: {id: hotel.to_param, hotel: invalid_attributes}, session: valid_session
         expect(response).to have_http_status(:unprocessable_entity)
-        expect(response.content_type).to eq('application/json')
+        expect(response.content_type).to eq('application/json; charset=utf-8')
       end
     end
   end
