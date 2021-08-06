@@ -90,7 +90,6 @@ RSpec.describe HotelsController, type: :controller do
         hotel = Hotel.create! valid_attributes
         put :update, params: {id: hotel.to_param, hotel: new_attributes}, session: valid_session
         hotel.reload
-        skip("Add assertions for updated state")
       end
 
       it "renders a JSON response with the hotel" do
