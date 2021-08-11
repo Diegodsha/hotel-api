@@ -5,12 +5,12 @@ class HotelsController < ApplicationController
   def index
     @hotels = Hotel.all
 
-    render json: @hotels
+    render json: HotelSerializer.new(@hotels).serialized_json
   end
 
   # GET /hotels/1
   def show
-    render json: @hotel
+      render json: HotelSerializer.new(@hotel).serialized_json
   end
 
   # POST /hotels
@@ -40,6 +40,7 @@ class HotelsController < ApplicationController
 
   private
     # Use callbacks to share common setup or constraints between actions.
+
     def set_hotel
       @hotel = Hotel.find(params[:id])
     end

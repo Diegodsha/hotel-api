@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     post 'favourite/hotel', to: 'favourites#create'
   end
 
+  get 'logged_in', to: 'sessions#logged_in'
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
   # namespace :api do

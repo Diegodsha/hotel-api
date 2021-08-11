@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::API
-  
+  # skip_before_action :verify_authenticity_token
   # def current_user
   #   User.find_by(id: session[:user_id])
   # end
@@ -7,7 +7,8 @@ class ApplicationController < ActionController::API
   # def logged_in?
   #   !current_user.nil?
   # end
-  # include ::ActionController::Cookies
-  # include SessionsHelper
-  # include Rescue
+  include ::ActionController::Cookies
+  include Rescue
+  include SessionsHelper
+  # include CurrentUserConcern
 end

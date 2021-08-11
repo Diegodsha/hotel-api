@@ -36,5 +36,10 @@ module HotelApi
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
+    config.middleware.use ActionDispatch::Cookies
+    config.middleware.use ActionDispatch::Session::CookieStore, key: '_square_app', expire_after: 20.years
+    config.middleware.insert_after(
+      ActionDispatch::Cookies, ActionDispatch::Session::CookieStore, key: '_square_app'
+    )
   end
 end
