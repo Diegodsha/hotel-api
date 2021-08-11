@@ -1,15 +1,6 @@
 class UsersController < ApplicationController
   include CurrentUserConcern
-  # before_action :logged_in?, only: %i[ show edit update destroy]
-  # before_action :current_user, only: %i[ show ]
   before_action :set_user, only: %i[ show edit update destroy]
-  # before_action :authenticate, only: %i[edit update destroy show] # home
-
-#   def home
-#     return unless logged_in?
-
-#     redirect_to current_user
-#   end
 
 def index
     @users = User.all
