@@ -1,5 +1,5 @@
 class HotelsController < ApplicationController
-  before_action :set_hotel, only: [:show, :update, :destroy]
+  before_action :set_hotel, only: %i[show update destroy]
 
   # GET /hotels
   def index
@@ -10,7 +10,7 @@ class HotelsController < ApplicationController
 
   # GET /hotels/1
   def show
-      render json: HotelSerializer.new(@hotel).serialized_json
+    render json: HotelSerializer.new(@hotel).serialized_json
   end
 
   # POST /hotels
@@ -39,14 +39,15 @@ class HotelsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
 
-    def set_hotel
-      @hotel = Hotel.find(params[:id])
-    end
+  # Use callbacks to share common setup or constraints between actions.
 
-    # Only allow a list of trusted parameters through.
-    def hotel_params
-      params.require(:hotel).permit(:name, :description, :price_nigth, :services, :img_url)
-    end
+  def set_hotel
+    @hotel = Hotel.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def hotel_params
+    params.require(:hotel).permit(:name, :description, :price_nigth, :services, :img_url)
+  end
 end
