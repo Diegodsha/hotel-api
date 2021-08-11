@@ -1,9 +1,8 @@
 class ReviewsController < ApplicationController
   include CurrentUserConcern
-    # before_action :set_hotel, only: [:create, :show, :update, :destroy]
+    before_action :set_hotel, only: [:hotel_reviews]
     before_action :find_user, only: [:create]
     before_action :set_review, only: [:show, :update, :destroy]
-    # before_action :authenticate, only: [:show, :create, :update, :destroy]
 
     # GET /reviews
     def index
@@ -11,6 +10,13 @@ class ReviewsController < ApplicationController
   
       render json: @reviews
     end
+
+    def hotel_reviews
+      @hotel_reviews = Review.where(hotel_id: @hotel.id)
+  
+      render json: @hotel_reviews
+    end
+    
   
     # GET /reviews/1
     def show
@@ -44,11 +50,6 @@ class ReviewsController < ApplicationController
   
     private
       # Use callbacks to share common setup or constraints between actions.
-      def authenticate
-        return if logged_in?
-    
-        render json: { error: 'User not found' }, status: :unauthorized
-      end
 
       def set_review
         @review = Review.find(params[:id])
