@@ -1,5 +1,4 @@
 class Hotel < ApplicationRecord
-    # has_many :hotel_reviews, dependent: :destroy
     has_many :reviews, dependent: :destroy
     has_many :users, through: :favourite_hotel, dependent: :destroy, foreign_key: :user_id
 
