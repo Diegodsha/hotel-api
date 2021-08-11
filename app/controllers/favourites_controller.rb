@@ -1,5 +1,5 @@
 class FavouritesController < ApplicationController
-  before_action :set_favourite, only: %i[show ]
+  before_action :set_favourite, only: %i[show]
   before_action :find_hotel, only: %i[destroy]
   before_action :find_user, only: %i[create index destroy]
 
