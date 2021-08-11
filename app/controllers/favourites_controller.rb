@@ -1,22 +1,21 @@
 class FavouritesController < ApplicationController
     before_action :set_favourite, only: [:show, :destroy]
-    # before_action :find_user, only: [:create]
-    before_action :current_user, only: [:show, :create]
+    before_action :find_user, only: [:create, :index]
+    # before_action :current_user, only: [:show, :create]
 
 
     def index
-        @favourites = FavouriteHotel.all
+        @favourites = FavouriteHotel.where(user_id: @user.id)
         render json: @favourites
     end
 
     def show
-      @current_user.favourite_hotel
         render json: @favourite
       end
     
 
       def create
-        @favourite = @current_user.favourite_hotel.build(favourite_params)
+        @favourite = @user.favourite_hotel.build(favourite_params)
     
         if @favourite.save
           render json: @favourite, status: :created
