@@ -1,7 +1,7 @@
 class FavouritesController < ApplicationController
-  before_action :set_favourite, only: %i[show destroy]
-  before_action :find_user, only: %i[create index]
-  # before_action :current_user, only: [:show, :create]
+  before_action :set_favourite, only: %i[show ]
+  before_action :find_hotel, only: %i[destroy]
+  before_action :find_user, only: %i[create index destroy]
 
   def index
     @favourites = FavouriteHotel.where(user_id: @user.id)
@@ -24,6 +24,7 @@ class FavouritesController < ApplicationController
 
   def destroy
     @favourite.destroy
+    render json: @favourite
   end
 
   private
@@ -39,6 +40,10 @@ class FavouritesController < ApplicationController
 
   def find_user
     @user = User.find(params[:user_id])
+  end
+
+  def find_hotel
+    @favourite = FavouriteHotel.find_by(hotel_id: params[:hotel_id])
   end
 
   def favourite_params
