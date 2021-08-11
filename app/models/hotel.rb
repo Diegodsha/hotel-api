@@ -1,7 +1,5 @@
 class Hotel < ApplicationRecord
     has_many :reviews, dependent: :destroy
-    has_many :users, through: :favourite_hotel, dependent: :destroy, foreign_key: :user_id
-
     validates :name, presence: true, length: { minimum: 3 }
     validates :description, presence: true, length: { minimum: 3 }
     validates :services, presence: true, length: { minimum: 3 }
