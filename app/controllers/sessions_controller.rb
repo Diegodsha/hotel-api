@@ -11,8 +11,6 @@ class SessionsController < ApplicationController
     else
       render json: { error: 'Please enter an existing username or create an account' }
     end
-    p "usersession id: #{session[:user_id]}"
-    # p "cuurentuser: #{@current_user}"
   end
 
   def printSessionId
@@ -23,7 +21,6 @@ class SessionsController < ApplicationController
   
 
   def logged_in
-    p "loggedin id: #{session[:user_id]}"
    if @current_user
     render json: {
       logged_in: true,
