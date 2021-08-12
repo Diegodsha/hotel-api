@@ -38,9 +38,9 @@ module HotelApi
     config.api_only = true
     config.middleware.use ActionDispatch::Cookies
     config.middleware.use ActionDispatch::Session::CookieStore, key: '_square_app', expire_after: 20.years, domain: "square-api-rr.herokuapp.com", secure: true,
-    same_site: :none
-    config.middleware.insert_after(
-      ActionDispatch::Cookies, ActionDispatch::Session::CookieStore, key: '_square_app'
-    )
+    same_site: "None"
+    # config.middleware.insert_after(
+    #   ActionDispatch::Cookies, ActionDispatch::Session::CookieStore, key: '_square_app'
+    # )
   end
 end
