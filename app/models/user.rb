@@ -1,5 +1,4 @@
 class User < ApplicationRecord
-  has_many :hotel_reviews, dependent: :destroy
   has_many :reviews, dependent: :destroy
   has_many :favourite_hotel, dependent: :destroy
   validates :email, presence: true, format: { with: URI::MailTo::EMAIL_REGEXP }
