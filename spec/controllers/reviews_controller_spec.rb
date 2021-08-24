@@ -4,27 +4,27 @@ RSpec.describe ReviewsController, type: :controller do
   let(:name) { 'simple name' }
   let(:valid_hotel_attributes) do
     { name: 'Learn Elmo', description: 'nice hotel', price_nigth: 34, services: 'pool,room service, buffet',
-        img_url: 'https://kjiovwbe.jpg' }
-    end
+      img_url: 'https://kjiovwbe.jpg' }
+  end
   let(:valid_user_attributes) do
-      { name: 'test', email: 'test@gmail.com' }
-    end
+    { name: 'test', email: 'test@gmail.com' }
+  end
 
   let(:valid_attributes) do
-      { title: 'test', body: 'test review', score: 5, hotel_id: hotel.id }
-    end
+    { title: 'test', body: 'test review', score: 5, hotel_id: hotel.id }
+  end
 
   let(:invalid_attributes) do
-      { title: '', body: 'test review', score: 5, hotel_id: hotel.id }
-    end
+    { title: '', body: 'test review', score: 5, hotel_id: hotel.id }
+  end
 
-  let(:user) {User.create! valid_user_attributes}
-  let(:hotel) {Hotel.create! valid_hotel_attributes}
+  let(:user) { User.create! valid_user_attributes }
+  let(:hotel) { Hotel.create! valid_hotel_attributes }
   let(:valid_session) { {} }
 
   describe 'GET #index' do
     it 'returns a success response' do
-      get :index, params: {user_id: user.id}, session: valid_session
+      get :index, params: { user_id: user.id }, session: valid_session
       expect(response).to be_successful
     end
   end
@@ -63,9 +63,9 @@ RSpec.describe ReviewsController, type: :controller do
 
   describe 'DELETE #destroy' do
     it 'destroys the requested review' do
-        review = user.reviews.create! valid_attributes
+      review = user.reviews.create! valid_attributes
       expect do
-        delete :destroy, params: {user_id: user.id, id: review.to_param }, session: valid_session
+        delete :destroy, params: { user_id: user.id, id: review.to_param }, session: valid_session
       end.to change(Hotel, :count).by(0)
     end
   end

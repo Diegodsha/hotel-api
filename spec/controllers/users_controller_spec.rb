@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe UsersController, type: :controller do
   let(:name) { 'simple name' }
   let(:valid_attributes) do
-    { name: 'test', email: 'test@gmail.com'}
+    { name: 'test', email: 'test@gmail.com' }
   end
 
   let(:invalid_attributes) { { name: '', email: '@gmail.com' } }

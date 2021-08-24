@@ -5,12 +5,12 @@ RSpec.describe SessionsController, type: :controller do
   let(:valid_user_attributes) do
     { name: 'test', email: 'test@gmail.com' }
   end
-  let(:user) {User.create! valid_user_attributes}
+  let(:user) { User.create! valid_user_attributes }
   let(:valid_session) { {} }
   let(:valid_attributes) do
-    { name: user.name}
+    { name: user.name }
   end
-  
+
   describe 'GET #index' do
     it 'returns a success response' do
       get :logged_in, params: {}, session: valid_session
