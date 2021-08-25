@@ -1,24 +1,19 @@
 Rails.application.routes.draw do
-  resources :sessions
+  resources :sessions, only: [:create, :logged_in, :destroy]
 
   resources :users do
-    # post 'signup', to: 'users#create'
-    resources :reviews
+    resources :reviews, only: [:create, :index, :show, :destroy]
     post 'review/hotel', to: 'reviews#create'
-    resources :favourites
+    resources :favourites, only: [:create, :index, :show, :destroy]
     post 'favourite/hotel', to: 'favourites#create'
+    delete 'favourite/hotel/:hotel_id', to: 'favourites#destroy'
   end
 
   get 'logged_in', to: 'sessions#logged_in'
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
-  # namespace :api do
-  #  namespace :v1 do
     resources :hotels do
       resources :reviews, only: [:create, :index, :show, :destroy]
-      # post 'review', to: 'reviews#create'
+      get 'hotel_reviews', to: 'reviews#hotel_reviews'
     end
-  # end
-  # end
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
